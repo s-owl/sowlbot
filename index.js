@@ -1,9 +1,10 @@
 const { RTMClient, WebClient } = require('@slack/client');
 const monday = require('./src/monday');
+const plugs = require('./src/plugs');
 
 // An access token (from your Slack app or custom integration - usually xoxb)
 // const token = process.env.SLACK_TOKEN;
-const token = "xoxb-165379521366-yWyGY3FcgxTtIaVPTsfPKaRe";
+const token = process.env.SLACK_TOKEN;
 // The client is initialized and then started to get an active connection to the platform
 const rtm = new RTMClient(token);
 const web = new WebClient(token);
@@ -20,6 +21,7 @@ rtm.on('message', (event) => {
     return;
   }
   monday.registerMondayNotify(web, event.channel);
+  plugs.runPlugs(rtm, event.text, event.channel);
   // Log the event
   console.log(`(channel:${event.channel}) ${event.user} says: ${event.text}`);
 
