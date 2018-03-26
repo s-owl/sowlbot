@@ -3,7 +3,8 @@ const request = require('request');
 exports.run = (rtm, msg, channel)=>{
   if(msg.startsWith("!공기 ") ||
     msg.startsWith("!air ") ||
-    msg.startsWith("！空气 "))){
+    msg.startsWith("！空气 ")
+  ){
     console.log("aqicn---");
     const keyword = msg.replace("!공기 ", "").replace("!air ", "")
       .replace("！空气 ", "").replace(/( )/gi, "+");
