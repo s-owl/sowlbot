@@ -25,9 +25,9 @@ exports.run = (rtm, msg, channel)=>{
             let jsonObj = JSON.parse(body);
             let str = `*${keyword}* (${geo.formatted_address}) 에서 가장 가까운 곳인, *${jsonObj.data.city.name}* 에서 관측된 현재 공기질 정보입니다.\n\n`
             +`종합 AQI 지수는 *${jsonObj.data.aqi}* 이며, 이는 *${getLevelForAqi(jsonObj.data.aqi)}* 입니다.\n\n`
-            +`PM2.5: ${jsonObj.data.iaqi.pm25.v || "자료 없음"}, PM10: ${jsonObj.data.iaqi.pm10.v || "자료 없음"}\n`
-            +`일산화 탄소: ${jsonObj.data.iaqi.co.v || 자료없음}, 이산화 질소: ${jsonObj.data.iaqi.no2.v || 자료없음}\n`
-            +`오존: ${jsonObj.data.iaqi.o3.v || 자료없음}, 이산화 황: ${jsonObj.data.iaqi.so2.v || 자료없음}\n`
+            +`PM2.5: *${jsonObj.data.iaqi.pm25.v || "자료 없음"}*, PM10: *${jsonObj.data.iaqi.pm10.v || "자료 없음"}*\n`
+            +`일산화 탄소: *${jsonObj.data.iaqi.co.v || 자료없음}*, 이산화 질소: *${jsonObj.data.iaqi.no2.v || 자료없음}*\n`
+            +`오존: *${jsonObj.data.iaqi.o3.v || 자료없음}*, 이산화 황: *${jsonObj.data.iaqi.so2.v || 자료없음}*\n`
             +`>출처: aqicn.org`;
             rtm.sendMessage(str, channel)
             .then((res) => {
