@@ -1,9 +1,12 @@
 const request = require('request');
 
 exports.run = async (rtm, msg, channel)=>{
-  if(msg.match("(\!날씨) (.+)") ||
-    msg.match("(\!weather) (.+)")){
-    const keyword = msg.replace("!날씨 ", "").replace("!weather ", "").replace(/( )/gi, "+");
+  if(msg.startsWith("!날씨 ") ||
+    msg.startsWith("!weather ") ||
+    msg.startsWith("！天气 ")
+  ){
+    const keyword = msg.replace("!날씨 ", "").replace("!weather ", "")
+      .replace("！天气 ", "").replace(/( )/gi, "+");
     const token = process.env.OPENWEATHERMAP_KEY;
     try{
       const googleMapsClient = require('@google/maps').createClient({

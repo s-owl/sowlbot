@@ -1,10 +1,12 @@
 const request = require('request');
 
 exports.run = (rtm, msg, channel)=>{
-  if(msg.match("(\!공기) (.+)") ||
-    msg.match("(\!air) (.+)")){
+  if(msg.startsWith("!공기 ") ||
+    msg.startsWith("!air ") ||
+    msg.startsWith("！空气 "))){
     console.log("aqicn---");
-    const keyword = msg.replace("!공기 ", "").replace("!air ", "").replace(/( )/gi, "+");
+    const keyword = msg.replace("!공기 ", "").replace("!air ", "")
+      .replace("！空气 ", "").replace(/( )/gi, "+");
     const token = process.env.AQICN_TOKEN;
     try{
       const googleMapsClient = require('@google/maps').createClient({
